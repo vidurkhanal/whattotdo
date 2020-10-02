@@ -1,33 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BsInboxFill,
   BsCalendar,
   BsCalendarFill,
   BsChevronCompactDown,
 } from "react-icons/bs";
+import {useSelectedProject} from '../../context/index'
 
 export const Sidebar = () => {
+  const {setSelectedProject} = useSelectedProject()
+  const [active,setActive] = useState('inbox')
+  const [showProject,setShowProject]= useState(true)
   return (
     <div className="sidebar" data-testid="sidebar">
       {/* Generic */}
       <ul className="sidebar__generic">
-        <li>
+        <li className="inbox" data-testid="inbox">
+          <div>
           <span>
             <BsInboxFill />
           </span>{" "}
           <span>Inbox</span>{" "}
+          </div>
+          
         </li>
-        <li>
+        <li className="today" data-testid="today">
+          <div>
           <span>
             <BsCalendar />
           </span>{" "}
           <span>Today</span>{" "}
+          </div>
         </li>
-        <li>
+        <li className="next_7" data-testid="next_7">
+          <div>
           <span>
             <BsCalendarFill />
           </span>{" "}
           <span>Next 7 Days</span>{" "}
+          </div>
         </li>
       </ul>
       {/* MIDDLE */}
@@ -35,7 +46,7 @@ export const Sidebar = () => {
         <span>
           <BsChevronCompactDown />
         </span>
-        <h3>Projects</h3>
+        <h2>Projects</h2>
       </div>
       {/* Projects */}
       <ul className="sidebar__projects">PROJECTS WILL BE HERE</ul>
